@@ -28,22 +28,18 @@
 
       function Distance() {
 
-        var distnace_call;
-        const sendPost = async () => {
-          const url = '/distance'; // the URL to send the HTTP request to
-          const method = 'POST';
-          const response = await fetch(url, { method });
-          distnace_call = await response.text(); // or response.json() if your server returns JSON
-        }
-
+        const url = '/distance'; // the URL to send the HTTP request to
+        const method = 'POST';
         const [distance, setDistance] = React.useState('...')
 
         const update_distnace = ()=>{
-          sendPost()
-          setDistance(distnace_call);
+          let resp = await fetch(url, { method });
+          setDistance(await resp.text);
         }
 
-        setDistance(distnace_call)
+        let response = await fetch(url, { method });
+        setDistance(await response.text);
+
         return (
           <div>
             <button onClick = {update_distnace}></button>
