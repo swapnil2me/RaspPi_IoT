@@ -1,7 +1,7 @@
 var data;
 function sendCommand() {
   const sendPost = async () => {
-    const url = '/get_distance'; // the URL to send the HTTP request to
+    const url = '/distance'; // the URL to send the HTTP request to
     const method = 'POST';
     const response = await fetch(url, { method });
     console.log(response);
