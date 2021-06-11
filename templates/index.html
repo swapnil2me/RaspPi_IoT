@@ -52,7 +52,7 @@
           setDistance(dist);
         }
 
-        setTimeout('update_distnace()', 1000);
+        setDistance(await get_distance());
 
         return (
           <div>
@@ -68,7 +68,11 @@
         )
       }
 
-      ReactDOM.render(<App />, document.getElementById('root'))
+      function renderApp() {
+        ReactDOM.render(<App />, document.getElementById('root'))
+      }
+
+      setTimeout('renderApp()', 1000);
 
     </script>
   </body>
