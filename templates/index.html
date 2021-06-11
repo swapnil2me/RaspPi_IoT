@@ -24,21 +24,34 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
 
-    function renderApp() {
-
-      function Distance() {
-
-        const url = '/distance'; // the URL to send the HTTP request to
-        const method = 'POST';
-        const [distance, setDistance] = React.useState('...')
-
-        const update_distnace = ()=>{
-          let resp = await fetch(url, { method });
-          setDistance(await resp.text);
+      async function get_distance() {
+        let distance;
+        const sendPost = async () => {
+          const url = '/distance'; // the URL to send the HTTP request to
+          const method = 'POST';
+          const response = await fetch(url, { method });
+          console.log(response);
+          // setDistance( await response.text() )
+          // console.log(data);
+          let dist =  await response.text()
+          console.log(dist);
+          return dist
         }
 
-        let response = await fetch(url, { method });
-        setDistance(await response.text);
+        distance = await sendPost();
+        return distance
+      }
+
+      function Distance() {
+        const [distance, setDistance] = React.useState('...')
+
+        // setTimeout('get_distance()', 1000);
+
+        const update_distnace = async ()=>{
+          let dist = await get_distance()
+          console.log(dist);
+          setDistance(dist);
+        }
 
         return (
           <div>
@@ -55,10 +68,6 @@
       }
 
       ReactDOM.render(<App />, document.getElementById('root'))
-
-    }
-
-    setTimeout('renderApp()', 5000);
 
     </script>
   </body>
