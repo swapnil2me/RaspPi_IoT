@@ -6,12 +6,54 @@
     <script type="text/javascript" src="{{ url_for('static', filename='amin.js') }}"> </script>
     <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"> </script>
   </head>
-  <body onload="keep_alive(); time(); sendCommand()">
+  <body onload="keep_alive(); time(); sendCommand()" style = 'background-color: #212121; color: #FAFAFA'>
     <div class="" id = "connection">
       <p>...</p>
     </div>
     <div class="" id = "distance">
       <p>...</p>
     </div>
+    <div id="root">
+
+    </div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+
+      function Distance() {
+        const [distance, setDistance] = React.useState('')
+
+        function get_distance() {
+          const sendPost = async () => {
+            const url = '/distance'; // the URL to send the HTTP request to
+            const method = 'POST';
+            const response = await fetch(url, { method });
+            console.log(response);
+            setDistance( await response.text() )
+            console.log(data);
+
+          }
+
+          sendPost();
+        }
+        setTimeout('sendCommand()', 1000);
+        
+        return (
+          <div>
+            <p>{distance}</p>
+          </div>
+        )
+      }
+
+      function App() {
+        return (
+          <Distance />
+        )
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'))
+
+    </script>
   </body>
 </html>
