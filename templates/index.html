@@ -45,13 +45,14 @@
       function Distance() {
         const [distance, setDistance] = React.useState('...')
 
-        // setTimeout('get_distance()', 1000);
 
         const update_distnace = async ()=>{
           let dist = await get_distance()
           console.log(dist);
           setDistance(dist);
         }
+
+        setTimeout('update_distnace()', 1000);
 
         return (
           <div>
