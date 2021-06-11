@@ -24,7 +24,7 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
 
-      function get_distance() {
+      async function get_distance() {
         let distance;
         const sendPost = async () => {
           const url = '/distance'; // the URL to send the HTTP request to
@@ -33,11 +33,12 @@
           console.log(response);
           // setDistance( await response.text() )
           // console.log(data);
-          distance =  response.text()
-          console.log(distance);
+          let dist =  await response.text()
+          console.log(dist);
+          return dist
         }
 
-        sendPost();
+        distance = await sendPost();
         return distance
       }
 
@@ -46,8 +47,8 @@
 
         // setTimeout('get_distance()', 1000);
 
-        const update_distnace = ()=>{
-          let dist = get_distance()
+        const update_distnace = async ()=>{
+          let dist = await get_distance()
           console.log(dist);
           setDistance(dist);
         }
