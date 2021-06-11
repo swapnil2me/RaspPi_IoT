@@ -26,36 +26,24 @@
 
     function renderApp() {
 
-      async function get_distance() {
-        let distance;
+      function Distance() {
+
+        var distnace_call;
         const sendPost = async () => {
           const url = '/distance'; // the URL to send the HTTP request to
           const method = 'POST';
           const response = await fetch(url, { method });
-          // console.log(response);
-          // setDistance( await response.text() )
-          // console.log(data);
-          let dist =  await response.text()
-          // console.log(dist);
-          return dist
+          distnace_call = await response.text(); // or response.json() if your server returns JSON
         }
 
-        distance = await sendPost();
-        return distance
-      }
-
-      function Distance() {
         const [distance, setDistance] = React.useState('...')
 
-
-        const update_distnace = async ()=>{
-          let dist = await get_distance()
-          console.log(dist);
-          setDistance(dist);
+        const update_distnace = ()=>{
+          sendPost()
+          setDistance(distnace_call);
         }
 
-        update_distnace()
-
+        setDistance(distnace_call)
         return (
           <div>
             <button onClick = {update_distnace}></button>
@@ -70,11 +58,11 @@
         )
       }
 
-        ReactDOM.render(<App />, document.getElementById('root'))
+      ReactDOM.render(<App />, document.getElementById('root'))
 
     }
 
-    setTimeout('renderApp()', 1000);
+    setTimeout('renderApp()', 5000);
 
     </script>
   </body>
