@@ -74,7 +74,7 @@ def keep_alive_amin():
     return data
 
 
-@app.route('/distange', methods = ['GET','POST'])
+@app.route('/distance', methods = ['GET','POST'])
 def distance():
     dist = get_distange()
     return jsonify(dist)

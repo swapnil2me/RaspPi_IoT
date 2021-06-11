@@ -12,5 +12,5 @@ function sendCommand() {
 
   sendPost();
   document.getElementById('distance').innerHTML = `<p> ${data} </p>`
-  setTimeout('sendCommand()', 1000);
+  // setTimeout('sendCommand()', 1000);
 }
