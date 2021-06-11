@@ -22,7 +22,7 @@
     <script type="text/babel">
 
       function Distance() {
-        const [distance, setDistance] = React.useState('')
+        const [distance, setDistance] = React.useState('...')
 
         function get_distance() {
           const sendPost = async () => {
@@ -37,8 +37,9 @@
 
           sendPost();
         }
-        setTimeout('sendCommand()', 1000);
-        
+
+        setTimeout('get_distance()', 1000);
+
         return (
           <div>
             <p>{distance}</p>
