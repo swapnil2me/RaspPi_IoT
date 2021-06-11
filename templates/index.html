@@ -24,6 +24,8 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
 
+    function renderApp() {
+
       async function get_distance() {
         let distance;
         const sendPost = async () => {
@@ -68,12 +70,11 @@
         )
       }
 
-      function renderApp() {
         ReactDOM.render(<App />, document.getElementById('root'))
 
-      }
+    }
 
-      setTimeout('renderApp()', 1000);
+    setTimeout('renderApp()', 1000);
 
     </script>
   </body>
