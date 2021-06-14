@@ -80,7 +80,9 @@ def keep_alive_amin():
 @app.route('/distance', methods = ['GET','POST'])
 def distance():
     dist = data['distance']
-    return jsonify(dist)
+    response = jsonify(dist)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
